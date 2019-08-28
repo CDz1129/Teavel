@@ -1,17 +1,8 @@
 <template>
   <div class="wrapper">
     <swiper :options="swiperOption">
-      <swiper-slide>
-        <img
-          class="swiper-img"
-          src="https://z1.muscache.cn/pictures/hongbao/marquee/original/08993cb0-97e9-4bf2-a4ec-f1f7055a7010.jpg"
-        />
-      </swiper-slide>
-      <swiper-slide>
-        <img
-          class="swiper-img"
-          src="https://z1.muscache.cn/pictures/hongbao/marquee/original/ca413674-f798-401a-9a6d-c4cd01e67238.jpg"
-        />
+      <swiper-slide v-for="item of swiperList" :key="item.id">
+        <img class="swiper-img" :src="item.imgUrl" />
       </swiper-slide>
       <div class="swiper-pagination" slot="pagination"></div>
     </swiper>
@@ -24,21 +15,34 @@ export default {
   data () {
     return {
       swiperOption: {
-        pagination: '.swiper-pagination'
-      }
+        pagination: '.swiper-pagination',
+        loop: true
+      },
+      swiperList: [
+        {
+          id: '1',
+          imgUrl:
+            'http://source.qunarzz.com/site/images/wns/20190827_dujia_homepage_750x192_2.jpg'
+        },
+        {
+          id: '2',
+          imgUrl:
+            'http://source.qunarzz.com/site/images/wns/20190826_qunar_dujia_750x192_3.jpg'
+        }
+      ]
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-
+.wrapper >>> .swiper-pagination-bullet-active
+  background: #fff
 .wrapper
   overflow: hidden
   width: 100%
-  // height: 0
-  // padding-bottom: 31.25%
+  height: 0
+  padding-bottom: 25.6%
   .swiper-img
     width: 100%
-
 </style>>
