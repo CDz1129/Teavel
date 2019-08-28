@@ -6,7 +6,7 @@
         <img class="item-img" :src="item.imgUrl" alt />
         <div class="item-info">
           <p class="item-title">{{item.title}}</p>
-          <p class="item-desc">{{item.titleDesc}}</p>
+          <p class="item-desc">{{item.desc}}</p>
           <button class="item-button">查看详情</button>
         </div>
       </li>
@@ -17,43 +17,8 @@
 <script>
 export default {
   name: 'HomeRecommend',
-  data () {
-    return {
-      recommendList: [
-        {
-          id: 1,
-          imgUrl:
-            'https://imgs.qunarzz.com/p/p70/1809/e7/4941057a6aae702.jpg_216x190_1d9c854f.jpg',
-          title: '深圳出发-跟团游',
-          titleDesc:
-            '深圳出发-跟团游 深圳地王大厦（上顶层观光）、大梅沙、中英街、滨海栈道、世界之窗一日游，送保险'
-        },
-        {
-          id: 2,
-          imgUrl:
-            'https://imgs.qunarzz.com/p/p70/1809/e7/4941057a6aae702.jpg_216x190_1d9c854f.jpg',
-          title: '深圳出发-跟团游',
-          titleDesc:
-            '深圳出发-跟团游 深圳地王大厦（上顶层观光）、大梅沙、中英街、滨海栈道、世界之窗一日游，送保险'
-        },
-        {
-          id: 3,
-          imgUrl:
-            'https://imgs.qunarzz.com/p/p70/1809/e7/4941057a6aae702.jpg_216x190_1d9c854f.jpg',
-          title: '深圳出发-跟团游',
-          titleDesc:
-            '深圳出发-跟团游 深圳地王大厦（上顶层观光）、大梅沙、中英街、滨海栈道、世界之窗一日游，送保险'
-        },
-        {
-          id: 4,
-          imgUrl:
-            'https://imgs.qunarzz.com/p/p70/1809/e7/4941057a6aae702.jpg_216x190_1d9c854f.jpg',
-          title: '深圳出发-跟团游',
-          titleDesc:
-            '深圳出发-跟团游 深圳地王大厦（上顶层观光）、大梅沙、中英街、滨海栈道、世界之窗一日游，送保险'
-        }
-      ]
-    }
+  props: {
+    recommendList: Array
   }
 }
 </script>

@@ -1,12 +1,12 @@
 <template>
   <div class="icons">
-    <swiper>
+    <swiper :options="swiperOption">
       <swiper-slide v-for="(page, index) in pages" :key="index">
         <div class="icon" v-for="item of page" :key="item.id">
           <div class="icon-img">
             <img class="icon-img-content" :src="item.imgUrl" alt />
           </div>
-          <p class="icon-desc">{{item.imgDesc}}</p>
+          <p class="icon-desc">{{item.desc}}</p>
         </div>
       </swiper-slide>
     </swiper>
@@ -16,61 +16,20 @@
 <script>
 export default {
   name: 'HomeIcons',
+  props: {
+    iconList: Array
+  },
   data () {
     return {
-      coinList: [
-        {
-          id: 1,
-          imgUrl: 'https://s.qunarzz.com/vacation_react/around/entry2_2.png',
-          imgDesc: '热门景点'
-        },
-        {
-          id: 2,
-          imgUrl: 'https://s.qunarzz.com/vacation_react/around/entry3.png',
-          imgDesc: '自驾游'
-        },
-        {
-          id: 3,
-          imgUrl: 'https://s.qunarzz.com/vacation_react/around/entry5.png',
-          imgDesc: '跟团游'
-        },
-        {
-          id: 4,
-          imgUrl: 'https://s.qunarzz.com/vacation_react/around/entry4.png',
-          imgDesc: '景点门票'
-        },
-        {
-          id: 5,
-          imgUrl: 'https://s.qunarzz.com/vacation_react/around/entry2_2.png',
-          imgDesc: '热门景点'
-        },
-        {
-          id: 6,
-          imgUrl: 'https://s.qunarzz.com/vacation_react/around/entry3.png',
-          imgDesc: '自驾游'
-        },
-        {
-          id: 7,
-          imgUrl: 'https://s.qunarzz.com/vacation_react/around/entry5.png',
-          imgDesc: '跟团游'
-        },
-        {
-          id: 8,
-          imgUrl: 'https://s.qunarzz.com/vacation_react/around/entry1.png',
-          imgDesc: '景+酒'
-        },
-        {
-          id: 9,
-          imgUrl: 'https://s.qunarzz.com/vacation_react/around/entry5.png',
-          imgDesc: '跟团游'
-        }
-      ]
+      swiperOption: {
+        autoPlay: false
+      }
     }
   },
   computed: {
     pages () {
       const pages = []
-      this.coinList.forEach((item, index) => {
+      this.iconList.forEach((item, index) => {
         const page = Math.floor(index / 8)
         if (!pages[page]) {
           pages[page] = []
@@ -89,6 +48,7 @@ export default {
 .icons
   overflow: hidden
   height: 0
+  margin-top: 0.3rem
   padding-bottom: 50%
   .icon
     position: relative
