@@ -1,11 +1,15 @@
 <template>
 <div>
   <div class="search">
-    <input v-model="keyword" type="text" class="search-input" placeholder="输入城市名或拼音" />
+    <input v-model="keyword" type="text"  class="search-input" placeholder="输入城市名或拼音" />
   </div>
-  <div class="search-context">
+  <div class="search-context" ref="search" v-show="keyword">
       <ul>
-          <li v-for="item in list" :key="item.id">{{item.name}}</li>
+          <li class="search-item border-bottom"
+          v-for="item in list"
+          :key="item.id"
+          @click='handleCityClick(item.name)'>{{item.name}}</li>
+          <li class="search-item border-bottom" v-show="hasNoData">没有找到匹配数据</li>
       </ul>
   </div>
 </div>
@@ -13,16 +17,31 @@
 
 <script>
 import { setTimeout } from 'timers'
+import Bscroll from 'better-scroll'
 export default {
   name: 'CitySearch',
   props: {
     cities: Object
+  },
+  mounted () {
+    this.scroll = new Bscroll(this.$refs.search)
   },
   data () {
     return {
       keyword: '',
       list: [],
       timer: null
+    }
+  },
+  methods: {
+    handleCityClick (city) {
+      this.$store.dispatch('changeCity', city)
+      this.$route.push('/')
+    }
+  },
+  computed: {
+    hasNoData () {
+      return !this.list.length
     }
   },
   watch: {
@@ -74,5 +93,11 @@ export default {
     left 0
     right 0
     bottom 0
-    background green
+    background #eee
+    .search-item
+        line-height .62rem
+        padding-left .2rem
+        color #666
+        background #fff
+
 </style>
