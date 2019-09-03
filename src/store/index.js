@@ -17,5 +17,4 @@ export default new Vuex.Store({
       state.city = city
     }
   }
-
 })
